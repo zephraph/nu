@@ -537,6 +537,5 @@ let-env config = {
 }
 
 source ~/.cache/starship/init.nu
+source .link/asdf.nu
 
-let-env ASDF_NU_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
-source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu

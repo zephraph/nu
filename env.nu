@@ -33,6 +33,8 @@ let-env PATH = (
   $env.PATH 
   | split row (char esep) 
   | prepend '/home/linuxbrew/.linuxbrew/bin'
+  | prepend '/opt/homebrew/bin'
+  | prepend '/usr/local/bin'
   | prepend '~/.config/carapace/bin'
   | append './node_modules/.bin' 
   | append '~/go/bin' 
@@ -60,3 +62,14 @@ let-env PROMPT_INDICATOR = ""
 let-env PROMPT_INDICATOR_VI_INSERT = "❯ "
 let-env PROMPT_INDICATOR_VI_NORMAL = "<=> "
 let-env PROMPT_MULTILINE_INDICATOR = "::: "
+
+# ASDF
+let-env ASDF_NU_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
+
+# Given that you can't dynamically source a file, I create a dynamic link to the asdf.nu file
+# and source that in the config.nu file. This is a hack, but it works. 
+if $nu.os-info.name == "linux" {
+  ln -s /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+} else if $nu.os-info.name == "macos" {
+  ln -s /opt/homebrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+}
