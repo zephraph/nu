@@ -133,6 +133,7 @@ export alias gsr                   = git svn rebase
 export alias gss                   = git status -s
 export alias gst                   = git status
 
+export alias gsta                  = git stash push
 export alias gstaa                 = git stash apply
 export alias gstc                  = git stash clear
 export alias gstd                  = git stash drop
