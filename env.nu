@@ -1,5 +1,12 @@
 # Nushell Environment Config File
 
+# Setup symlinks to files that need stable paths cross platform
+if $nu.os-info.name == "linux" {
+  ln -sf /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu ~/.nu-config/.link/asdf.nu
+} else if $nu.os-info.name == "macos" {
+  ln -sf /opt/homebrew/opt/asdf/libexec/asdf.nu ~/.nu-config/.link/asdf.nu
+}
+
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
 # - converted from a value back to a string when running external commands (to_string)
@@ -19,17 +26,17 @@ let-env ENV_CONVERSIONS = {
 #
 # By default, <nushell-config-dir>/scripts is added
 let-env NU_LIB_DIRS = [
-    ($nu.config-path | path dirname | path join 'scripts')
+  ~/.nu-config/scripts
 ]
 
 # Directories to search for plugin binaries when calling register
 #
 # By default, <nushell-config-dir>/plugins is added
 let-env NU_PLUGIN_DIRS = [
-    ($nu.config-path | path dirname | path join 'plugins')
+   ~/.nu-config/plugins
 ]
 
-use ./scripts/platform.nu
+use ~/.nu-config/scripts/platform.nu
 
 let-env PATH = (
   $env.PATH 
@@ -46,6 +53,7 @@ let-env PATH = (
   | append '~/scripts'
   )
 
+# TODO: Dont' fail if code is not installed
 let-env EDITOR = (which code).0.path
 
 # Setup starship prompt
@@ -67,14 +75,3 @@ let-env PROMPT_MULTILINE_INDICATOR = "::: "
 
 # ASDF
 let-env ASDF_NU_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
-
-# Ensure link directory exists
-mkdir ~/.nu-link
-
-# Given that you can't dynamically source a file, I create a dynamic link to the asdf.nu file
-# and source that in the config.nu file. This is a hack, but it works. 
-if $nu.os-info.name == "linux" {
-  ln -sf /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu ~/.nu-link/asdf.nu
-} else if $nu.os-info.name == "macos" {
-  ln -sf /opt/homebrew/opt/asdf/libexec/asdf.nu ~/.nu-link/asdf.nu
-}

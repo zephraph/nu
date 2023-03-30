@@ -4,7 +4,7 @@ alias c     = clear
 alias e     = exit
 alias s     = shells
 
-source ./aliases/nu_alias_git.nu
+source alias_git.nu
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -534,5 +534,5 @@ let-env config = {
 }
 
 source ~/.cache/starship/init.nu
-source ~/.nu-link/asdf.nu
+source ~/.nu-config/.link/asdf.nu
 
