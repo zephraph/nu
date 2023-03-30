@@ -68,10 +68,13 @@ let-env PROMPT_MULTILINE_INDICATOR = "::: "
 # ASDF
 let-env ASDF_NU_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
 
+# Ensure link directory exists
+mkdir ~/.nu-link
+
 # Given that you can't dynamically source a file, I create a dynamic link to the asdf.nu file
 # and source that in the config.nu file. This is a hack, but it works. 
 if $nu.os-info.name == "linux" {
-  ln -sf /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+  ln -sf /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu ~/.nu-link/asdf.nu
 } else if $nu.os-info.name == "macos" {
-  ln -sf /opt/homebrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+  ln -sf /opt/homebrew/opt/asdf/libexec/asdf.nu ~/.nu-link/asdf.nu
 }

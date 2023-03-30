@@ -534,5 +534,5 @@ let-env config = {
 }
 
 source ~/.cache/starship/init.nu
-source .link/asdf.nu
+source ~/.nu-link/asdf.nu
 
