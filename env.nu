@@ -29,14 +29,16 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
+use ./scripts/platform.nu
+
 let-env PATH = (
   $env.PATH 
   | split row (char esep) 
-  | prepend '/home/linuxbrew/.linuxbrew/bin'
-  | prepend '/opt/homebrew/bin'
+  | platform prepend-if linux '/home/linuxbrew/.linuxbrew/bin'
+  | platform prepend-if macos '/opt/homebrew/bin'
   | prepend '/usr/local/bin'
-  | prepend '~/.config/carapace/bin'
   | append './node_modules/.bin' 
+  | append '~/.config/carapace/bin'
   | append '~/go/bin' 
   | append '~/.cargo/bin' 
   | append '~/.bin' 
@@ -69,7 +71,7 @@ let-env ASDF_NU_DIR = (brew --prefix asdf | str trim | into string | path join '
 # Given that you can't dynamically source a file, I create a dynamic link to the asdf.nu file
 # and source that in the config.nu file. This is a hack, but it works. 
 if $nu.os-info.name == "linux" {
-  ln -s /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+  ln -sf /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
 } else if $nu.os-info.name == "macos" {
-  ln -s /opt/homebrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
+  ln -sf /opt/homebrew/opt/asdf/libexec/asdf.nu .link/asdf.nu
 }

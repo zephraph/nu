@@ -3,11 +3,8 @@
 alias c     = clear
 alias e     = exit
 alias s     = shells
-alias gcopr = gh pr checkout
-alias gst   = git status
-alias gco   = git checkout
-alias ga    = git add
-alias gc    = git commit
+
+source ./aliases/nu_alias_git.nu
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
