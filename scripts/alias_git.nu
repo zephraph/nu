@@ -46,6 +46,7 @@ export alias gclean                = git clean -id
 export alias gpristine             = ((git reset --hard); (git clean -dffx))
 export alias gcmsg                 = git commit -m
 export alias gco                   = git checkout
+export alias gcom                  = git checkout (git branch -r | find origin/HEAD main master | first | split row '->' | last | split row '/' | last | ansi strip)
 export alias gcor                  = git checkout --recurse-submodules
 export alias gcount                = git shortlog -sn
 export alias gcp                   = git cherry-pick
