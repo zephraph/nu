@@ -1,9 +1,6 @@
 # Nushell Config File
 
-alias c     = clear
-alias e     = exit
-alias s     = shells
-
+source alias_shell.nu
 source alias_git.nu
 
 # For more information on defining custom themes, see
