@@ -68,9 +68,6 @@ export alias gdw                   = git diff --word-diff
 export alias gf                    = git fetch
 export alias gfo                   = git fetch origin
 
-export alias gg                    = git gui citool
-export alias gga                   = git gui citool --amend
-
 export alias ghh                   = git help
 
 export alias gignore               = git update-index --assume-unchanged

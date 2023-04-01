@@ -5,3 +5,11 @@ export def prepend-if [os, text] {
     $in
   }
 }
+
+export def append-if [os, text] {
+  if $nu.os-info.name == $os {
+    append $text
+  } else {
+    $in
+  }
+}
