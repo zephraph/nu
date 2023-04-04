@@ -4,6 +4,20 @@
 # Aliases
 # (sorted alphabetically)
 #
+def git_default_branch [] {
+    git branch -r | find origin/HEAD main master | first | ansi strip | split row '->' | last | split row '/' | last | str trim
+}
+
+def gmm [] {
+    echo $"(ansi gb)git checkout (git_default_branch)(ansi reset)"
+    git checkout (git_default_branch)
+    echo $"(ansi gb)git pull(ansi reset)"
+    git pull
+    echo $"(ansi gb)git checkout -(ansi reset)"
+    git checkout -
+    echo $"(ansi gb)git merge (git_default_branch)(ansi reset)"
+    git merge (git_default_branch)
+}
 
 export alias ga                    = git add
 export alias gaa                   = git add --all
@@ -46,7 +60,6 @@ export alias gclean                = git clean -id
 export alias gpristine             = ((git reset --hard); (git clean -dffx))
 export alias gcmsg                 = git commit -m
 export alias gco                   = git checkout
-export alias gcom                  = git checkout (git branch -r | find origin/HEAD main master | first | ansi strip | split row '->' | last | split row '/' | last | str trim)
 export alias gcor                  = git checkout --recurse-submodules
 export alias gcount                = git shortlog -sn
 export alias gcp                   = git cherry-pick
