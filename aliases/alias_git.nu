@@ -62,6 +62,7 @@ export alias gcmsg                 = git commit -m
 export alias gco                   = git checkout
 export alias gcom                  = git checkout (git_default_branch)
 export alias gcor                  = git checkout --recurse-submodules
+export alias gcopr                 = gh pr checkout
 export alias gcount                = git shortlog -sn
 export alias gcp                   = git cherry-pick
 export alias gcpa                  = git cherry-pick --abort
