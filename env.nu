@@ -56,19 +56,23 @@ let-env PATH = (
   | append '~/scripts'
   )
 
-# TODO: Dont' fail if code is not installed
+# TODO: Don't fail if code is not installed
 let-env EDITOR = (which code).0.path
 
 # Setup starship prompt
 let-env STARSHIP_SHELL = "nu"
 mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+# TODO: Remove this hack once starship gets updated
+starship init nu | str replace "= {" "= {||" --all | save -f ~/.cache/starship/init.nu
+
+mkdir ~/.local/share/atuin/
+atuin init nu | save -f ~/.local/share/atuin/init.nu
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
 
-let-env PROMPT_COMMAND = { create_left_prompt }
+let-env PROMPT_COMMAND = {|| create_left_prompt }
 let-env PROMPT_COMMAND_RIGHT = ""
 
 let-env PROMPT_INDICATOR = ""
