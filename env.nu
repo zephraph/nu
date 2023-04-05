@@ -66,7 +66,8 @@ mkdir ~/.cache/starship
 starship init nu | str replace "= {" "= {||" --all | save -f ~/.cache/starship/init.nu
 
 mkdir ~/.local/share/atuin/
-atuin init nu | save -f ~/.local/share/atuin/init.nu
+# TODO: Remove this hack once atuin gets updated
+atuin init nu | str replace "',-1'" "..-1" | save -f ~/.local/share/atuin/init.nu
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
