@@ -46,6 +46,7 @@ let-env PATH = (
   | platform prepend-if macos '/opt/homebrew/bin'
   | platform prepend-if macos '~/.local/bin'
   | platform prepend-if macos '~/Code/deno.run/.run'
+  | platform prepend-if macos '/Applications/Racket v8.8/bin'
   | prepend '/usr/local/bin'
   | append './node_modules/.bin' 
   | append '~/.config/carapace/bin'
