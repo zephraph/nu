@@ -60,6 +60,9 @@ let-env PATH = (
 # TODO: Don't fail if code is not installed
 let-env EDITOR = (which code).0.path
 
+# Setup git to ensure that it uses code in wait mode
+git config --global core.editor "code --wait"
+
 # Setup starship prompt
 let-env STARSHIP_SHELL = "nu"
 mkdir ~/.cache/starship
