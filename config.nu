@@ -3,6 +3,7 @@
 source alias_shell.nu
 source alias_git.nu
 source utilities.nu
+source oxide.nu
 
 
 # For more information on defining custom themes, see

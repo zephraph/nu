@@ -8,3 +8,7 @@ def ghdl [url: string, path: string = "."] {
   let raw_url = ($parsed_url.path | str replace '/blob/' '/' | $"https://raw.githubusercontent.com($in)")
   http get $raw_url | save $"($path)/($filename)"
 }
+
+def is-not-empty [] {
+  $in | is-empty | not $in
+}

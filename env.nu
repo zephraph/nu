@@ -55,6 +55,7 @@ let-env PATH = (
   | append '~/.bin' 
   | append '~/.deno/bin'
   | append '~/scripts'
+  | append './out/dendrite-stub/bin'
   )
 
 # TODO: Don't fail if code is not installed
