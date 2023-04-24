@@ -68,8 +68,7 @@ git config --global core.editor "code --wait"
 # Setup starship prompt
 let-env STARSHIP_SHELL = "nu"
 mkdir ~/.cache/starship
-# TODO: Remove this hack once starship gets updated
-starship init nu | str replace "= {" "= {||" --all | save -f ~/.cache/starship/init.nu
+starship init nu | save -f ~/.cache/starship/init.nu
 
 mkdir ~/.local/share/atuin/
 # TODO: Remove this hack once atuin gets updated
