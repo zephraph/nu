@@ -9,6 +9,10 @@ def ghdl [url: string, path: string = "."] {
   http get $raw_url | save $"($path)/($filename)"
 }
 
+def prs [] {
+  gh pr list --author @me
+}
+
 def is-not-empty [] {
   $in | is-empty | not $in
 }
