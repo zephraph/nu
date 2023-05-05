@@ -8,6 +8,10 @@ def git_default_branch [] {
     git branch -r | find origin/HEAD main master | first | ansi strip | split row '->' | last | split row '/' | last | str trim
 }
 
+def git_current_branch [] {
+    git branch --show-current
+}
+
 def gmm [] {
     echo $"(ansi gb)git checkout (git_default_branch)(ansi reset)"
     git checkout (git_default_branch)
@@ -108,7 +112,7 @@ export alias gpf                   = git push --force-with-lease
 export alias gpf!                  = git push --force
 export alias gpoat                 = (git push origin --all; git push origin --tags)
 export alias gpr                   = git pull --rebase
-export alias gpu                   = git push upstream
+export alias gpu                   = git push -u origin (git_current_branch) 
 export alias gpv                   = git push -v
 
 export alias gr                    = git remote
@@ -122,8 +126,8 @@ export alias grbs                  = git rebase --skip
 export alias grev                  = git revert
 export alias grh                   = git reset
 export alias grhh                  = git reset --hard
-# export alias groh                  = (get_current_branch | git reset origin/$in --hard)
-export alias groh                  = get_current_branch
+# export alias groh                  = (git_current_branch | git reset origin/$in --hard)
+export alias groh                  = git_current_branch
 export alias grm                   = git rm
 export alias grmc                  = git rm --cached
 export alias grmv                  = git remote rename
