@@ -61,7 +61,6 @@ export alias gcf                   = git config --list
 
 export alias gcl                   = git clone --recurse-submodules
 export alias gclean                = git clean -id
-export alias gpristine             = ((git reset --hard); (git clean -dffx))
 export alias gcmsg                 = git commit -m
 export alias gco                   = git checkout
 export alias gcom                  = git checkout (git_default_branch)
@@ -110,7 +109,6 @@ export alias gp                    = git push
 export alias gpd                   = git push --dry-run
 export alias gpf                   = git push --force-with-lease
 export alias gpf!                  = git push --force
-export alias gpoat                 = (git push origin --all; git push origin --tags)
 export alias gpr                   = git pull --rebase
 export alias gpu                   = git push -u origin (git_current_branch) 
 export alias gpv                   = git push -v
@@ -164,7 +162,6 @@ export alias gsw                   = git switch
 export alias gswc                  = git switch -c
 
 export alias gts                   = git tag -s
-export alias gtv                   = (git tag | lines | sort)
 
 export alias gunignore             = git update-index --no-assume-unchanged
 export alias gup                   = git pull --rebase
