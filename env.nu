@@ -48,8 +48,8 @@ let-env PATH = (
   | platform prepend-if macos '~/Code/deno.run/.run'
   | platform prepend-if macos '/Applications/Racket v8.8/bin'
   | platform prepend-if macos "/Users/just-be/Oxide/omicron/out/dendrite-stub/root/opt/oxide/dendrite/bin"
+  | prepend './node_modules/.bin' 
   | prepend '/usr/local/bin'
-  | append './node_modules/.bin' 
   | append '~/.config/carapace/bin'
   | append '~/go/bin' 
   | append '~/.cargo/bin' 
