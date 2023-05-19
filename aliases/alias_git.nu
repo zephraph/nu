@@ -9,7 +9,7 @@ def git_default_branch [] {
 }
 
 def git_current_branch [] {
-    git branch --show-current
+    git branch --show-current | str trim
 }
 
 def gmm [] {
